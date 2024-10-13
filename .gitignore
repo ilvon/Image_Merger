@@ -1,0 +1,9 @@
+.venv
+.vscode
+__pycache__
+debug
+dist
+test
+*.exe
+*.ps1
+*.spec

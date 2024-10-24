@@ -54,7 +54,7 @@ class ImageMatrix():
 
     class utils():
         @staticmethod
-        def geometric_sum(values: list):
+        def geometric_mean(values: list):
             avg_height = math.exp(sum(math.log(v) for v in values) / len(values))
             return round(avg_height)
 
@@ -103,13 +103,13 @@ class ImageMatrix():
         
         # 1st resizing
         for ridx, r in enumerate(dimension_matrix):
-            temp_new_height = self.utils.geometric_sum(self.utils.extract_row_elements(r, 1))
+            temp_new_height = self.utils.geometric_mean(self.utils.extract_row_elements(r, 1))
             for cidx, c in enumerate(r):
                 temp_new_width = c[0] * (temp_new_height / c[1])
                 final_matrix[ridx][cidx] = (temp_new_width, temp_new_height)
            
         total_width = [sum(self.utils.extract_row_elements(row, 0)) for row in final_matrix]
-        final_canvas_width = self.utils.geometric_sum(total_width)
+        final_canvas_width = self.utils.geometric_mean(total_width)
         # 2nd resizing
         for ridx, r in enumerate(final_matrix):
             resizing_multiplier = final_canvas_width / total_width[ridx]
